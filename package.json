@@ -1,0 +1,22 @@
+{
+  "name": "usability-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "build": "node scripts/build.js",
+    "lint": "node scripts/check.js",
+    "start": "node backend/start.js",
+    "verify:storage": "node scripts/verify-storage.js",
+    "verify:dashboard": "node scripts/verify-dashboard.js",
+    "test": "node --test tests/backend.test.js tests/tracker.test.js tests/extension.test.js",
+    "test:e2e": "npm run build && node scripts/e2e.js",
+    "test:extension": "npm run build && node scripts/test-extension.js",
+    "demo": "node backend/start.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0"
+  }
+}

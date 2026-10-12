@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Usability Analytics</title><link rel="stylesheet" href="/dashboard/style.css">
+  <script src="/dashboard/app.js" defer></script>
+</head>
+<body>
+  <header><a class="brand" href="/dashboard"><span class="mark">u</span> Usability <span class="muted">/ Analytics</span></a><a href="/demo" target="_blank" rel="noopener">Open test website ↗</a></header>
+  <main>
+    <div class="heading"><div><p class="eyebrow">WEBSITE OVERVIEW</p><h1>Understand every visit.</h1><p class="muted">Explore how visitors navigate, interact, and spend their time.</p></div>
+      <div class="controls"><label>Project<select id="project" aria-label="Project"></select></label><button id="refresh" type="button">Refresh data</button></div></div>
+    <div class="status-line"><span class="badge">All time</span><span id="status" role="status">Loading analytics…</span></div>
+    <p id="error" role="alert" hidden></p>
+    <div id="empty" class="empty" hidden>No recorded page views yet. Open the test website, interact with it, then refresh this dashboard.</div>
+    <div id="content" hidden>
+      <section class="metrics" aria-label="Overview metrics">
+        <article><span>Total sessions</span><strong id="sessions">—</strong><small>Anonymous browsing sessions</small></article>
+        <article><span>Page views</span><strong id="views">—</strong><small>Recorded page loads & navigation</small></article>
+        <article><span>Total events</span><strong id="events">—</strong><small id="interaction-total">Recorded interactions and signals</small></article>
+        <article><span>Average session duration</span><strong id="duration">—</strong><small>Active time, excluding idle tabs</small></article>
+        <article><span>Average scroll depth</span><strong id="depth">—</strong><small>Maximum depth per page view</small></article>
+      </section>
+      <section class="panel filters"><h2>Filters</h2><div class="controls"><label>Page<select id="filter-page"><option value="">All pages</option></select></label><label>Event type<select id="filter-event"><option value="">All interaction types</option></select></label><label>Session<select id="filter-session"><option value="">All sessions</option></select></label><button id="clear-filters" type="button">Clear filters</button></div><p class="footnote">Filters apply to dashboard tables. Overview cards remain project-wide.</p></section>
+      <div class="grid">
+        <section class="panel"><h2>Most visited pages</h2><p class="muted">Where visitors go and how long they stay.</p><div class="table-wrap"><table><thead><tr><th>Page path</th><th>Views</th><th>Sessions</th><th>Avg. active time</th></tr></thead><tbody id="pages"></tbody></table></div></section>
+        <section class="panel"><h2>Top interactions</h2><p class="muted">Clicks, focus changes and form activity.</p><div class="table-wrap"><table><thead><tr><th>Element / page</th><th>Event type</th><th>Count</th></tr></thead><tbody id="interactions"></tbody></table></div></section>
+      </div>
+      <section class="panel heat-panel"><div class="heading compact"><div><h2>Click heatmap</h2><p class="muted">See where clicks concentrate on a schematic page.</p></div><div class="controls"><label>Page<select id="heat-page"></select></label><label>Viewport<select id="heat-viewport"></select></label></div></div>
+        <p id="heat-status" role="status"></p><div class="heat-layout"><div class="heat-frame"><canvas id="heatmap" width="900" height="560" aria-label="Click density on a normalized page" role="img"></canvas></div><aside><h3>Click density</h3><div class="legend"></div><div class="legend-labels"><span>Lower</span><span>Higher</span></div><p id="heat-count"></p><p class="muted">Coordinates are scaled within one viewport group. Height extends to the lowest recorded click; this is not a screenshot or the full document height.</p></aside></div></section>
+      <div class="grid"><section class="panel"><h2>Attention by section</h2><p class="muted">Accumulated time at least 50% visible in a focused tab.</p><div class="table-wrap"><table><thead><tr><th>Section / page</th><th>Total</th><th>Average</th><th>Sessions</th></tr></thead><tbody id="attention"></tbody></table></div></section>
+        <section class="panel"><h2>Scroll reach</h2><p class="muted">Share of recorded page views reaching each milestone.</p><div id="scroll"></div><p class="footnote">Views without a scroll milestone count as 0%. Depth is measured in 25% steps.</p></section></div>
+      <section class="panel"><h2>Recent session activity</h2><p class="muted">Latest 50 sessions. Select a row to inspect its safe event timeline.</p><div class="table-wrap"><table><thead><tr><th>Session ID</th><th>Started</th><th>First page</th><th>Pages visited</th><th>Active duration</th><th>Interactions</th></tr></thead><tbody id="recent"></tbody></table></div></section>
+      <section class="panel" id="timeline-panel" hidden><div class="heading compact"><div><h2>Session timeline</h2><p class="muted" id="timeline-title"></p></div><button id="close-timeline" type="button">Close</button></div><div class="table-wrap"><table><thead><tr><th>Time</th><th>Event</th><th>Page</th><th>Safe detail</th></tr></thead><tbody id="timeline"></tbody></table></div></section>
+    </div>
+    <footer>Stored-event analytics · Refresh to fetch the latest data · No dashboard activity is tracked</footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Local documentation app</title>
+<script defer src="__TRACKER_ORIGIN__/tracker.js" data-project-id="integration-project"></script>
+<style>body{font:17px Georgia;margin:40px;background:#faf8f2}article{height:500px}label{display:block}button,input,textarea{font:inherit}</style></head><body>
+<article><h1>Documentation</h1><button id="buy">Copy example</button> <a href="#contact" id="link">Feedback</a><button id="route" onclick="history.pushState({},'', '/docs/guide')">Open guide</button></article>
+<article id="contact"><h2>Feedback</h2><form onsubmit="event.preventDefault()"><label>Name<input name="name"></label><label>Email<input type="email" name="email"></label><label>Password<input type="password"></label><label>Message<textarea></textarea></label><button type="submit">Send</button></form></article>
+<article><h2>Examples</h2></article><article><h2>Reference</h2></article>
+</body></html>
